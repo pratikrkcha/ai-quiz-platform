@@ -69,7 +69,7 @@ export const LandingPage = () => {
       });
       
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Failed to create room');
+      if (!res.ok) throw new Error(data.error || data.message || 'Failed to create room');
       
       setHostRole(data.roomCode, data.hostToken, numQuestions);
       setLocation(`/host/${data.roomCode}`);
@@ -98,13 +98,13 @@ export const LandingPage = () => {
                   id="topic"
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
-                  maxLength={200}
+                  maxLength={100}
                   placeholder="e.g. The history of Rome..."
                   aria-label="Quiz topic"
                   className="w-full bg-paper border-2 border-ink p-4 rounded-wobblyMd focus:outline-none focus:border-bluepen focus:ring-2 focus:ring-bluepen/20 resize-none h-28 text-xl placeholder-ink/40"
                 />
                 <div className="text-right text-sm text-ink/70 mt-1 font-bold">
-                  {topic.length}/200
+                  {topic.length}/100
                 </div>
               </div>
               
