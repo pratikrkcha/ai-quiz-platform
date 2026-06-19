@@ -1,0 +1,67 @@
+name: Production Deployment Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Lint and Format Verification
+        run: npm run lint --if-present
+
+      - name: Run Backend Integration Tests
+        run: npm run test --workspace=backend
+        env:
+          GEMINI_API_KEY: "mocked" # LLM is mocked in setup.ts, no external calls
+
+      - name: Run Frontend Tests
+        run: npm run test --workspace=frontend
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & Push Backend Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./backend/Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend:latest
+
+      - name: Build & Push Frontend Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./frontend/Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend:latest
+          
+  # Optional Stage: Target deployment to Render / AWS ECS / Fly.io 
+  # deploy:
+  #   needs: test-and-build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Trigger Webhook / AWS CLI Update
+  #       run: echo "Code is tested, images built. Ready to trigger orchestrator."
