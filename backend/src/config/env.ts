@@ -1,10 +1,7 @@
 import { cleanEnv, str, port, url } from 'envalid';
 import dotenv from 'dotenv';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// __dirname is globally available in CommonJS
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 // Envalid will immediately throw and crash the process if any of these are missing on startup.
 export const env = cleanEnv(process.env, {
