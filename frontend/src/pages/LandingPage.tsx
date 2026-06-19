@@ -81,7 +81,7 @@ export const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
+    <div className="flex-1 flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
       {/* Hand drawn decor */}
       <div className="relative mb-12 -rotate-2 z-50">
         <svg 

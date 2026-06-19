@@ -9,9 +9,10 @@ import { LandingPage } from './pages/LandingPage';
 import { JoinPage } from './pages/JoinPage';
 import { HostView } from './pages/HostView';
 import { PlayerView } from './pages/PlayerView';
+import { Footer } from './components/Footer';
 
 const NotFound = () => (
-  <div className="min-h-screen flex items-center justify-center p-6 bg-paper font-patrick text-ink">
+  <div className="flex-1 flex items-center justify-center p-6 bg-paper font-patrick text-ink">
     <div className="max-w-md w-full bg-white border-[3px] border-ink p-8 rounded-wobbly shadow-[8px_8px_0px_0px_#2d2d2d] text-center">
       <h1 className="font-kalam text-5xl text-accent mb-4 -rotate-2">404</h1>
       <p className="text-2xl font-bold mb-6">Page Not Found</p>
@@ -54,17 +55,23 @@ const GlobalSocketListener = () => {
   return null;
 };
 
+
 const App = () => {
   return (
     <ErrorBoundary>
-      <GlobalSocketListener />
-      <Switch>
-        <Route path="/" component={LandingPage} />
-        <Route path="/host/:roomCode" component={HostView} />
-        <Route path="/join" component={JoinPage} />
-        <Route path="/play/:roomCode" component={PlayerView} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="flex flex-col min-h-screen">
+        <GlobalSocketListener />
+        <main className="flex-1 flex flex-col">
+          <Switch>
+            <Route path="/" component={LandingPage} />
+            <Route path="/host/:roomCode" component={HostView} />
+            <Route path="/join" component={JoinPage} />
+            <Route path="/play/:roomCode" component={PlayerView} />
+            <Route component={NotFound} />
+          </Switch>
+        </main>
+        <Footer />
+      </div>
     </ErrorBoundary>
   );
 };
