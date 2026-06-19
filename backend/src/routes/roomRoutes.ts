@@ -9,7 +9,8 @@ export const roomRouter = Router();
 
 const createRoomSchema = z.object({
   topic: z.string().min(1).max(100),
-  timerDuration: z.number().optional().default(30)
+  timerDuration: z.number().optional().default(30),
+  numQuestions: z.number().int().min(5).max(15).optional().default(5)
 });
 
 // Single REST endpoint for room creation, guarded by stricter rate limit
@@ -20,11 +21,11 @@ roomRouter.post('/', createRoomLimiter, async (req, res, next) => {
        return res.status(400).json({ error: 'Invalid topic. Must be a string between 1 and 100 characters.' });
     }
 
-    const { topic, timerDuration } = parsed.data;
+    const { topic, timerDuration, numQuestions } = parsed.data;
     
     // Generates questions. If prompt injection occurs, this throws an error handled by errorMiddleware.
-    // Otherwise, it returns 5 questions (or 5 fallback questions if Gemini API goes down entirely).
-    const questions = await generateQuestions(topic);
+    // Otherwise, it returns the requested number of questions (or fallback questions if Gemini API goes down entirely).
+    const questions = await generateQuestions(topic, numQuestions);
     
     const roomCode = await generateUniqueRoomCode();
     const hostToken = uuidv4();

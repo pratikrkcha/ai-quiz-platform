@@ -6,6 +6,7 @@ import { Loader2 } from 'lucide-react';
 export const LandingPage = () => {
   const [topic, setTopic] = useState('');
   const [timerDuration, setTimerDuration] = useState<number>(30);
+  const [numQuestions, setNumQuestions] = useState<number>(5);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [, setLocation] = useLocation();
@@ -22,13 +23,13 @@ export const LandingPage = () => {
       const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/rooms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topic: topic.trim(), timerDuration })
+        body: JSON.stringify({ topic: topic.trim(), timerDuration, numQuestions })
       });
       
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Failed to create room');
       
-      setHostRole(data.roomCode, data.hostToken, 5); // MVP assumes 5 questions
+      setHostRole(data.roomCode, data.hostToken, numQuestions);
       setLocation(`/host/${data.roomCode}`);
     } catch (err: any) {
       setError(err.message || 'Network error. Please try again.');
@@ -80,6 +81,26 @@ export const LandingPage = () => {
                     }`}
                   >
                     {t}s
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <label className="block text-xl font-bold mb-2">Number of Questions</label>
+              <div className="flex gap-2 justify-between">
+                {[5, 10, 15].map((q) => (
+                  <button
+                    key={q}
+                    type="button"
+                    onClick={() => setNumQuestions(q)}
+                    className={`flex-1 py-2 font-kalam font-bold text-lg rounded-wobbly transition-all ${
+                      numQuestions === q 
+                        ? 'bg-[#fff9c4] border-[3px] border-ink shadow-[2px_2px_0px_0px_#2d2d2d]' 
+                        : 'bg-white border-2 border-ink hover:bg-gray-50'
+                    }`}
+                  >
+                    {q}
                   </button>
                 ))}
               </div>

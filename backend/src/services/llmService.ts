@@ -14,7 +14,7 @@ export const QuestionSchema = z.object({
   correctIndex: z.number().int().min(0).max(3)
 });
 
-export const QuestionsResponseSchema = z.array(QuestionSchema).length(5);
+export const QuestionsResponseSchema = z.array(QuestionSchema).min(1).max(15);
 export type IQuestion = z.infer<typeof QuestionSchema>;
 
 const FALLBACK_QUESTIONS: IQuestion[] = [
@@ -44,8 +44,8 @@ export const sanitizeTopic = (topic: string): string => {
   return cleaned;
 };
 
-const getPrompt = (topic: string) => `
-You are a highly precise AI quiz generator. Generate exactly 5 multiple-choice questions about the topic: "${topic}".
+const getPrompt = (topic: string, count: number) => `
+You are a highly precise AI quiz generator. Generate exactly ${count} multiple-choice questions about the topic: "${topic}".
 Difficulty: Moderate.
 Return ONLY a raw JSON array of objects. Do not include markdown formatting, backticks, or any preamble text.
 
@@ -66,9 +66,9 @@ Example output:
 ]
 `;
 
-export const generateQuestionsRaw = async (topic: string): Promise<IQuestion[]> => {
+export const generateQuestionsRaw = async (topic: string, numQuestions: number = 5): Promise<IQuestion[]> => {
   const cleanedTopic = sanitizeTopic(topic);
-  const prompt = getPrompt(cleanedTopic);
+  const prompt = getPrompt(cleanedTopic, numQuestions);
   
   let attempt = 0;
   const maxAttempts = 3;
@@ -150,9 +150,9 @@ export const generateQuestionsRaw = async (topic: string): Promise<IQuestion[]> 
   throw new QuizGenerationError('Max retries exceeded', false);
 };
 
-export const generateQuestions = async (topic: string): Promise<IQuestion[]> => {
+export const generateQuestions = async (topic: string, numQuestions: number = 5): Promise<IQuestion[]> => {
   try {
-    return await generateQuestionsRaw(topic);
+    return await generateQuestionsRaw(topic, numQuestions);
   } catch (err: any) {
     // If the error was a security issue (prompt injection, bad length), we FAIL HARD.
     if (err instanceof QuizGenerationError && err.isSecurityIssue) {
