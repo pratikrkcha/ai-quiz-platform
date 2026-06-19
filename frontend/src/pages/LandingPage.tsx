@@ -182,12 +182,12 @@ export const LandingPage = () => {
                 </button>
               </div>
 
-              <div className="text-center min-h-[40px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }}>
-                <div className="font-patrick text-[14px] text-[#4285F4]">
+              <div className="text-center min-h-[50px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }}>
+                <div className="font-patrick text-[18px] text-[#4285F4]">
                   {typewriterText}
                 </div>
-                <div className="font-patrick text-[12px] text-[#4285F4] flex items-center justify-center">
-                  <svg width="12" height="12" viewBox="0 0 28 28" fill="none" className="mr-1">
+                <div className="font-patrick text-[16px] text-[#4285F4] flex items-center justify-center mt-1">
+                  <svg width="16" height="16" viewBox="0 0 28 28" fill="none" className="mr-1">
                     <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="#4285F4"/>
                   </svg>
                   Powered by Gemini
