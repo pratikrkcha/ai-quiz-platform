@@ -28,7 +28,7 @@ interface GameState {
   // Actions
   setConnectionStatus: (connected: boolean, error: string | null) => void;
   setHostRole: (roomCode: string, hostToken: string, questionCount: number) => void;
-  setPlayerRole: (roomCode: string, nickname: string, initialScore: number) => void;
+  setPlayerRole: (roomCode: string, nickname: string, initialScore: number, questionCount: number) => void;
   setRoomStatus: (status: RoomStatus) => void;
   updateLeaderboard: (leaderboard: { nickname: string; score: number }[]) => void;
   startQuestion: (q: { questionIndex: number; text: string; options: string[]; timeLimitMs: number }) => void;
@@ -63,8 +63,8 @@ export const useGameStore = create<GameState>((set) => ({
     isHost: true, roomCode, hostToken, questionCount, status: 'lobby' 
   }),
   
-  setPlayerRole: (roomCode, nickname, initialScore) => set({ 
-    isHost: false, roomCode, nickname, score: initialScore, status: 'lobby' 
+  setPlayerRole: (roomCode, nickname, initialScore, questionCount) => set({ 
+    isHost: false, roomCode, nickname, score: initialScore, status: 'lobby', questionCount 
   }),
   
   setRoomStatus: (status) => set({ status }),

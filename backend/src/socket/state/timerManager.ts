@@ -33,3 +33,13 @@ export const clearQuestionTimer = (roomCode: string) => {
     roomTimers.delete(roomCode);
   }
 };
+
+export const triggerQuestionCloseEarly = async (io: Server, roomCode: string, correctIndex: number) => {
+  clearQuestionTimer(roomCode);
+  try {
+    const leaderboard = await getLeaderboard(roomCode);
+    io.to(roomCode).emit('question_closed', { correctIndex, leaderboard });
+  } catch (e) {
+    console.error(`Failed to broadcast early closed question for room ${roomCode}`, e);
+  }
+};

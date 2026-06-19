@@ -33,7 +33,8 @@ export const handlePlayerJoin = async (io: Server, socket: Socket, payload: any)
 
   socket.emit('join_success', { 
     nickname, 
-    currentScore: player?.score || 0 
+    currentScore: player?.score || 0,
+    questionCount: room.questions.length
   });
 
   io.to(roomCode).emit('player_joined', { 
@@ -65,6 +66,11 @@ export const handlePlayerSubmitAnswer = async (io: Server, socket: Socket, paylo
     // Broadcast generic leaderboard silently to update UI without spoiling the answer
     const leaderboard = await getLeaderboard(roomCode);
     io.to(roomCode).emit('leaderboard_update', { leaderboard });
+
+    if (result.allAnswered) {
+      const { triggerQuestionCloseEarly } = await import('../state/timerManager');
+      await triggerQuestionCloseEarly(io, roomCode, result.correctIndex);
+    }
 
   } catch (err: any) {
     if (err instanceof RoomError && err.code === 'ALREADY_ANSWERED') {

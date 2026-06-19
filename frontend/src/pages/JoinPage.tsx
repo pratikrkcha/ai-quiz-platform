@@ -27,7 +27,7 @@ export const JoinPage = () => {
     // Set up listeners for the response
     const unsubSuccess = subscribe('join_success', (data) => {
       cleanup();
-      setPlayerRole(roomCode.toUpperCase(), data.nickname, data.currentScore);
+      setPlayerRole(roomCode.toUpperCase(), data.nickname, data.currentScore, data.questionCount);
       setLocation(`/play/${roomCode.toUpperCase()}`);
     });
 

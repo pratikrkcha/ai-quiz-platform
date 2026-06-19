@@ -154,7 +154,9 @@ export const submitAnswer = async (roomCode: string, socketId: string, answerInd
     throw new RoomError('SUBMIT_FAILED', 'Failed to submit answer');
   }
 
-  return { correct: isCorrect, points, correctIndex: question.correctIndex };
+  const allAnswered = updatedRoom.players.length > 0 && updatedRoom.players.every(p => p.hasAnsweredCurrent);
+  
+  return { correct: isCorrect, points, correctIndex: question.correctIndex, allAnswered };
 };
 
 export const getLeaderboard = async (roomCode: string) => {
