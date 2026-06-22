@@ -46,13 +46,13 @@ export const useSocket = () => {
     };
   }, [setConnectionStatus, roomCode, hostToken, nickname, isHost]);
 
-  // Expose emit globally
-  const emit = useCallback((event: string, payload?: unknown) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const emit = useCallback((event: string, payload?: any) => {
     socket.emit(event, payload);
   }, []);
 
-  // Safe subscription wrapper preventing duplicate listeners on re-render
-  const subscribe = useCallback((event: string, callback: (...args: unknown[]) => void) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const subscribe = useCallback((event: string, callback: (...args: any[]) => void) => {
     socket.on(event, callback);
     return () => {
       socket.off(event, callback);
