@@ -103,8 +103,8 @@ export const HostGamePanel = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {currentQuestion.options.map((opt, idx) => {
-              let isCorrect = isQuestionClosed && correctAnswerIndex === idx;
-              let isWrong = isQuestionClosed && correctAnswerIndex !== null && correctAnswerIndex !== idx;
+              const isCorrect = isQuestionClosed && correctAnswerIndex === idx;
+              const isWrong = isQuestionClosed && correctAnswerIndex !== null && correctAnswerIndex !== idx;
               
               let bgClass = "bg-white";
               if (isCorrect) bgClass = "bg-[#4ade80] text-ink"; // Green

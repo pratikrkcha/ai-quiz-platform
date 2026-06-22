@@ -47,12 +47,12 @@ export const useSocket = () => {
   }, [setConnectionStatus, roomCode, hostToken, nickname, isHost]);
 
   // Expose emit globally
-  const emit = useCallback((event: string, payload?: any) => {
+  const emit = useCallback((event: string, payload?: unknown) => {
     socket.emit(event, payload);
   }, []);
 
   // Safe subscription wrapper preventing duplicate listeners on re-render
-  const subscribe = useCallback((event: string, callback: (...args: any[]) => void) => {
+  const subscribe = useCallback((event: string, callback: (...args: unknown[]) => void) => {
     socket.on(event, callback);
     return () => {
       socket.off(event, callback);

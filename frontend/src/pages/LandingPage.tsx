@@ -28,8 +28,8 @@ export const LandingPage = () => {
       "Almost ready..."
     ];
     
-    let currentLineIdx = typewriterIndex % lines.length;
-    let currentLine = lines[currentLineIdx];
+    const currentLineIdx = typewriterIndex % lines.length;
+    const currentLine = lines[currentLineIdx];
     let charIdx = 0;
     let isMounted = true;
     
@@ -73,8 +73,9 @@ export const LandingPage = () => {
       
       setHostRole(data.roomCode, data.hostToken, numQuestions);
       setLocation(`/host/${data.roomCode}`);
-    } catch (err: any) {
-      setError(err.message || 'Network error. Please try again.');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Network error. Please try again.';
+      setError(errorMessage || 'Network error. Please try again.');
     } finally {
       setIsLoading(false);
     }
