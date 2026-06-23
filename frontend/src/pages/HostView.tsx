@@ -63,8 +63,7 @@ export const HostView = () => {
               <span className="sm:hidden ml-2 font-bold font-kalam text-xl">Copy Code</span>
             </button>
           </div>
-          {/* Accessibility: aria-live announces the temporary status to screen readers */}
-          {copied && <p className="text-bluepen mt-4 text-xl font-bold font-kalam animate-pulse" aria-live="polite">Copied to clipboard!</p>}
+          {copied && <p className="text-bluepen mt-4 text-xl font-bold font-kalam animate-pulse">Copied to clipboard!</p>}
         </div>
 
         <div className="flex items-center justify-between mb-6 md:mb-12 text-2xl md:text-3xl border-t-[3px] border-dashed border-ink/30 pt-4 md:pt-8 px-2 md:px-4">

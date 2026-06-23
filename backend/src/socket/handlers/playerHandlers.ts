@@ -4,9 +4,7 @@ import { addPlayer, reconnectPlayer, submitAnswer, findRoomByCode, getLeaderboar
 
 const PlayerJoinSchema = z.object({
   roomCode: z.string().length(4),
-  // Security & Validation: 
-  // Added .trim() to ensure users cannot submit whitespace-only names to bypass .min(1)
-  nickname: z.string().trim().min(1, 'Nickname cannot be empty').max(20).regex(/^[a-zA-Z0-9 ]+$/, 'Alphanumeric and spaces only')
+  nickname: z.string().min(1).max(20).regex(/^[a-zA-Z0-9 ]+$/, 'Alphanumeric and spaces only')
 });
 
 const badWords = ['fuck', 'shit', 'bitch']; 
