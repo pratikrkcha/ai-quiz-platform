@@ -90,8 +90,8 @@ export const LandingPage = () => {
       {/* Hand drawn decor */}
       <div className="relative mb-4 md:mb-12 -rotate-2 z-50 inline-block text-center mt-2 md:mt-6">
         <svg 
-          width="32" height="32" viewBox="0 0 28 28" fill="none" 
-          className="absolute -top-5 -left-10 hidden md:block drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
+          viewBox="0 0 28 28" fill="none" 
+          className="absolute -top-3 -left-4 sm:-top-4 sm:-left-6 md:-top-5 md:-left-10 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
         >
           <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGradSm)"/>
           <defs>
