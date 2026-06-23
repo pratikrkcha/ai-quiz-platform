@@ -116,17 +116,8 @@ export const generateQuestionsRaw = async (topic: string, numQuestions: number =
       let text = data.candidates?.[0]?.content?.parts?.[0]?.text;
       if (!text) throw new QuizGenerationError('Malformed LLM API response structure', true);
       
-      // Robustness & Edge-Case Coverage:
-      // Extract JSON array safely in case LLM prepends/appends conversational filler.
-      // This is far more resilient than simply replacing markdown fences.
-      const startIndex = text.indexOf('[');
-      const endIndex = text.lastIndexOf(']');
-      if (startIndex !== -1 && endIndex !== -1 && endIndex >= startIndex) {
-        text = text.substring(startIndex, endIndex + 1);
-      } else {
-        // Fallback if no array brackets found
-        text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
-      }
+      // Best-effort recovery: strip markdown fences if the LLM hallucinated them despite instructions
+      text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
       
       let parsed;
       try {
