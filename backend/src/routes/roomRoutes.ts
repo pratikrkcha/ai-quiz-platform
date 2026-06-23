@@ -30,7 +30,7 @@ roomRouter.post('/', createRoomLimiter, async (req, res, next) => {
     const roomCode = await generateUniqueRoomCode();
     const hostToken = uuidv4();
     
-    await createRoom(roomCode, hostToken, questions, timerDuration);
+    await createRoom(roomCode, hostToken, questions as any, timerDuration);
     
     res.status(201).json({
       roomCode,

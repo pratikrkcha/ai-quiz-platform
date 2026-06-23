@@ -45,7 +45,7 @@ const createClient = (): ClientSocket => {
 };
 
 const waitForEvent = (client: ClientSocket, event: string) => {
-  return new Promise<unknown>((resolve) => client.once(event, resolve));
+  return new Promise<any>((resolve) => client.once(event, resolve));
 };
 
 describe('End-to-End Game Lifecycle Integration Tests', () => {
