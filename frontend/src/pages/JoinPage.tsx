@@ -61,7 +61,7 @@ export const JoinPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-paper font-patrick text-ink">
+    <div className="min-h-screen flex items-center justify-center p-6 font-patrick text-ink">
       <div className="max-w-md w-full bg-white border-[3px] border-ink p-8 md:p-10 rounded-wobbly shadow-[8px_8px_0px_0px_#2d2d2d] relative hover:-rotate-1 transition-transform duration-300">
         {/* Tape decoration */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-8 bg-[#ff4d4d]/20 rotate-3 backdrop-blur-sm border-2 border-ink/10"></div>

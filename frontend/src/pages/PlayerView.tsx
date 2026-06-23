@@ -100,7 +100,7 @@ export const PlayerView = () => {
   // Render State 1: Lobby
   if (status === 'lobby') {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 font-patrick text-ink">
         <div className="max-w-md w-full bg-white border-[3px] border-ink p-8 rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] text-center relative hover:rotate-1 transition-transform">
           <div className="absolute -top-4 right-8 w-8 h-8 bg-bluepen rounded-full shadow-md z-20 border-2 border-ink"></div>
           
@@ -125,7 +125,7 @@ export const PlayerView = () => {
     const isTop3 = myRank > 0 && myRank <= 3;
 
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink overflow-hidden relative">
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 font-patrick text-ink overflow-hidden relative">
         {isTop3 && (
           <div className="absolute inset-0 pointer-events-none z-0">
             {[...Array(30)].map((_, i) => (
@@ -184,7 +184,7 @@ export const PlayerView = () => {
   if (!currentQuestion) return null;
 
   return (
-    <div className="min-h-screen flex flex-col p-4 md:p-8 bg-paper font-patrick text-ink">
+    <div className="min-h-screen flex flex-col p-4 md:p-8 font-patrick text-ink">
       
       {/* Top Bar */}
       <div className="flex flex-row items-center justify-between mb-6 md:mb-10 bg-white border-[3px] border-ink p-4 md:p-6 rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d]">

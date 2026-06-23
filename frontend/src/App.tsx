@@ -12,7 +12,7 @@ import { PlayerView } from './pages/PlayerView';
 import { Footer } from './components/Footer';
 
 const NotFound = () => (
-  <div className="flex-1 flex items-center justify-center p-6 bg-paper font-patrick text-ink">
+  <div className="flex-1 flex items-center justify-center p-6 font-patrick text-ink">
     <div className="max-w-md w-full bg-white border-[3px] border-ink p-8 rounded-wobbly shadow-[8px_8px_0px_0px_#2d2d2d] text-center">
       <h1 className="font-kalam text-5xl text-accent mb-4 -rotate-2">404</h1>
       <p className="text-2xl font-bold mb-6">Page Not Found</p>

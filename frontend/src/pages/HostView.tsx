@@ -41,7 +41,7 @@ export const HostView = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 font-patrick text-ink">
       <div className="max-w-2xl w-full bg-white border-[3px] border-ink p-8 md:p-16 rounded-wobbly shadow-[8px_8px_0px_0px_#2d2d2d] relative hover:rotate-1 transition-transform duration-300">
         {/* Tape decoration */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-8 bg-[#e5e0d8] opacity-80 rotate-2 border border-ink/20 shadow-sm"></div>

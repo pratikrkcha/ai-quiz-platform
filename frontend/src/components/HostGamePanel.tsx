@@ -44,7 +44,7 @@ export const HostGamePanel = () => {
 
   if (status === 'finished') {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 font-patrick text-ink">
         <h1 className="text-7xl font-kalam font-bold text-accent mb-8 -rotate-2 drop-shadow-md">Game Over!</h1>
         <div className="max-w-2xl w-full bg-white border-[3px] border-ink p-8 rounded-wobbly shadow-[8px_8px_0px_0px_#2d2d2d]">
           <h2 className="text-4xl font-bold mb-6 text-center border-b-2 border-dashed border-ink pb-4">Final Leaderboard</h2>
@@ -74,7 +74,7 @@ export const HostGamePanel = () => {
   if (!currentQuestion) return null;
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row p-4 lg:p-8 gap-8 bg-paper font-patrick text-ink">
+    <div className="min-h-screen flex flex-col lg:flex-row p-4 lg:p-8 gap-8 font-patrick text-ink">
       
       {/* Left Column: Question Area */}
       <div className="flex-1 flex flex-col max-w-4xl">
