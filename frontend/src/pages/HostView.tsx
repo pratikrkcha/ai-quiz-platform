@@ -52,14 +52,15 @@ export const HostView = () => {
           <div className="absolute -left-3 -top-3 w-6 h-6 rounded-full bg-accent border-2 border-ink shadow-md"></div>
           
           <p className="text-3xl font-bold mb-4 font-kalam text-bluepen">Join Code:</p>
-          <div className="flex items-center space-x-6 bg-white border-[3px] border-ink py-4 px-8 rounded-wobbly shadow-[inset_3px_3px_0px_0px_rgba(0,0,0,0.1)]">
-            <span className="text-6xl font-bold font-kalam tracking-[0.2em]">{roomCode}</span>
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 bg-white border-[3px] border-ink py-4 px-4 sm:px-8 rounded-wobbly shadow-[inset_3px_3px_0px_0px_rgba(0,0,0,0.1)] w-full sm:w-auto justify-center">
+            <span className="text-5xl sm:text-6xl font-bold font-kalam tracking-[0.1em] sm:tracking-[0.2em]">{roomCode}</span>
             <button 
               onClick={handleCopy}
-              className="p-3 hover:bg-muted border-2 border-transparent hover:border-ink rounded-wobbly transition-all active:scale-95"
+              className="p-2 sm:p-3 bg-muted sm:bg-transparent border-2 border-ink sm:border-transparent hover:border-ink rounded-wobbly transition-all active:scale-95 flex items-center justify-center"
               aria-label="Copy room code"
             >
-              <Copy size={36} className={copied ? "text-bluepen" : "text-ink"} />
+              <Copy size={32} className={copied ? "text-bluepen" : "text-ink"} />
+              <span className="sm:hidden ml-2 font-bold font-kalam text-xl">Copy Code</span>
             </button>
           </div>
           {copied && <p className="text-bluepen mt-4 text-xl font-bold font-kalam animate-pulse">Copied to clipboard!</p>}

@@ -102,8 +102,8 @@ export const LandingPage = () => {
             </linearGradient>
           </defs>
         </svg>
-        <h1 className="text-6xl md:text-7xl font-kalam font-bold text-accent whitespace-nowrap">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] drop-shadow-sm pr-3">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-kalam font-bold text-accent whitespace-normal md:whitespace-nowrap leading-tight text-center">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] drop-shadow-sm pr-2 sm:pr-3">
             AI
           </span>
           Quiz Builder!
