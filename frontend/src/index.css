@@ -16,8 +16,8 @@
     font-family: 'Patrick Hand', cursive;
     background-color: #fdfbf7;
     background-image: 
-      linear-gradient(45deg, #e5e0d8 25%, transparent 25%, transparent 75%, #e5e0d8 75%, #e5e0d8),
-      linear-gradient(45deg, #e5e0d8 25%, transparent 25%, transparent 75%, #e5e0d8 75%, #e5e0d8);
+      linear-gradient(45deg, rgba(45, 45, 45, 0.06) 25%, transparent 25%, transparent 75%, rgba(45, 45, 45, 0.06) 75%, rgba(45, 45, 45, 0.06)),
+      linear-gradient(45deg, rgba(45, 45, 45, 0.06) 25%, transparent 25%, transparent 75%, rgba(45, 45, 45, 0.06) 75%, rgba(45, 45, 45, 0.06));
     background-position: 0 0, 16px 16px;
     background-size: 32px 32px;
     color: #2d2d2d;
