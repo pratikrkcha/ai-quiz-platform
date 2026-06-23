@@ -95,8 +95,9 @@ export const JoinPage = () => {
             />
           </div>
 
+          {/* Accessibility: aria-live="assertive" ensures dynamic error messages are announced to screen readers */}
           {error && (
-            <div className="bg-[#ff4d4d]/10 p-3 rounded-wobblyMd border-2 border-accent border-dashed text-accent font-bold text-xl text-center transform -rotate-1">
+            <div className="bg-[#ff4d4d]/10 p-3 rounded-wobblyMd border-2 border-accent border-dashed text-accent font-bold text-xl text-center transform -rotate-1" aria-live="assertive">
               {error}
             </div>
           )}

@@ -36,7 +36,7 @@ export const handleStartGame = async (io: Server, socket: Socket) => {
   if (room.status !== 'lobby') throw new Error('Game already started');
 
   await setRoomStatus(roomCode, 'playing');
-  const updatedRoom = await advanceQuestion(roomCode);
+  const updatedRoom = await advanceQuestion(roomCode, room.currentQuestionIndex);
   
   const qIndex = updatedRoom.currentQuestionIndex;
   const question = updatedRoom.questions[qIndex];
@@ -66,7 +66,7 @@ export const handleNextQuestion = async (io: Server, socket: Socket) => {
     const leaderboard = await getLeaderboard(roomCode);
     io.to(roomCode).emit('game_over', { finalLeaderboard: leaderboard });
   } else {
-    const updatedRoom = await advanceQuestion(roomCode);
+    const updatedRoom = await advanceQuestion(roomCode, room.currentQuestionIndex);
     const qIndex = updatedRoom.currentQuestionIndex;
     const question = updatedRoom.questions[qIndex];
     const timeLimitMs = (updatedRoom.timerDuration || 30) * 1000;

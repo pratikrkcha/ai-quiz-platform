@@ -186,7 +186,8 @@ export const LandingPage = () => {
                 </div>
               </div>
 
-              {error && <p className="text-accent font-bold text-lg">{error}</p>}
+              {/* Accessibility: aria-live="assertive" instantly announces errors to screen readers */}
+              {error && <p className="text-accent font-bold text-lg" aria-live="assertive">{error}</p>}
               
               <div className="relative mt-4">
                 <div className="sparkle-container">
@@ -220,7 +221,8 @@ export const LandingPage = () => {
                 </button>
               </div>
 
-              <div className="text-center h-[60px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }}>
+              {/* Accessibility: aria-live="polite" announces loading status updates without interrupting the user */}
+              <div className="text-center h-[60px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }} aria-live="polite">
                 <div className="font-patrick text-[18px] text-[#4285F4] h-7 flex justify-center">
                   <div className="whitespace-nowrap">
                     {typewriterText}
