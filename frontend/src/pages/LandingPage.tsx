@@ -62,7 +62,9 @@ export const LandingPage = () => {
     setError('');
     
     try {
-      const res = await fetch(`/api/rooms`, {
+      const baseUrl = import.meta.env.VITE_API_URL || '';
+      const endpoint = baseUrl ? `${baseUrl}/api/rooms` : '/api/rooms';
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic: topic.trim(), timerDuration, numQuestions })
