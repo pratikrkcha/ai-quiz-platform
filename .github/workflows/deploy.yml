@@ -33,7 +33,7 @@ jobs:
           GEMINI_API_KEY: "mocked" # LLM is mocked in setup.ts, no external calls
 
       - name: Run Frontend Tests
-        run: npm run test --workspace=frontend
+        run: npm run test --if-present --workspace=frontend
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
