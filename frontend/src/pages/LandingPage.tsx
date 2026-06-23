@@ -62,8 +62,8 @@ export const LandingPage = () => {
     setError('');
     
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || '';
-      const endpoint = baseUrl ? `${baseUrl}/api/rooms` : '/api/rooms';
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+      const endpoint = `${baseUrl}/api/rooms`;
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
